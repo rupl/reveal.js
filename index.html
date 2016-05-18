@@ -4,10 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Something Something Service Worker</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/custom/sssw.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,8 +25,156 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>Something<br> Something<br> Service<br> Worker</h1>
+				</section>
+				<section>
+					<h2>AKA: Give me a break, Morten reminded me about this on Monday</h2>
+				</section>
+				<section>
+					<h2>And I've been busy not<br> working since October</h2>
+				</section>
+				<section>
+					<section>
+						<h2>I've been traveling.</h2>
+						<h2 class="fragment">Yes, the whole time.</h2>
+						<h1 class="fragment"><br><span class="emoji">🌏</span> Southeast Asia <span class="emoji">🌏</span></h1>
+						<p class="fragment">It was hard work.</p>
+					</section>
+					<section data-background="img/vietnam-halong-bay.jpg"></section>
+					<section data-background="img/vietnam-catba.jpg"></section>
+					<section data-background="img/myanmar-kalaw.jpg"></section>
+					<section data-background="img/laos-muang-khua.jpg"></section>
+					<section data-background="img/laos-muang-ngoy.jpg"></section>
+					<section data-background="img/thailand-koh-lipe.jpg"></section>
+					<section>
+						<h2>Anyway, the point.</h2>
+					</section>
+				</section>
+				<section>
+					<h2>The internet <em>sucks</em> in all of these places.</h2>
+				</section>
+				<section>
+					<h2>How can we make the internet tolerable in places with shoddy network access?</h2>
+					<p class="fragment only-visible-active">You know the answer already:</p>
+					<ul>
+						<li class="fragment">Use responsive images to reduce page weight</li>
+						<li class="fragment">Don't block rendering with CSS/JS/fonts</li>
+						<li class="fragment">Provide critical CSS so the browser paints <abbr title="as soon as possible">ASAP</abbr></li>
+						<li class="fragment">Set and stick to a performance budget</li>
+						<li class="fragment">Test your work using robots</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Extra credit...</h2>
+					<p class="fragment"><a href="https://fourkitchens.com/blog/article/throttled-thursdays">Schedule some weekly empathy for less fortunate folks</a></p>
+				</section>
+				<section>
+					<h1>but wait!</h1>
+					<p class="fragment">Isn't all of that stuff focusing on <strong>first page load</strong>,<br> potentially to the detriment of the subsequent loads?</p>
+				</section>
+				<section>
+					<p>Yes. But that can be fixed with</p>
+					<h1 class="fragment">Service Worker</h1>
+				</section>
+				<section>
+					<section>
+						<p>Service Worker is a <a href="http://www.html5rocks.com/en/tutorials/workers/basics/">Web Worker</a> which can intercept and allow you to handle network requests for your website.</p>
+					</section>
+					<section>
+						<p>Web workers are plain JavaScript, but they have special powers because it's not part of the main thread that powers normal page interactivity.</p>
+					</section>
+					<section>
+						<p class="fragment shrink">Service Worker has additional super powers:</p>
+						<ul>
+							<li class="fragment">Enable custom handling of HTTP requests.</li>
+							<li class="fragment">Enable you to send push notifications</li>
+							<li class="fragment">Enable background updates</li>
+							<li class="fragment">Qualify your site for "save to homescreen"</li>
+						</ul>
+					</section>
+					<section>
+						<p>It is the first, very important step towards</p>
+						<h2>Progressive Web Apps</h2>
+					</section>
+				</section>
+				<section>
+					<p>Service Worker forms the shell of your progressive web app.</p>
+					<p class="fragment">After the initial visit <em>you can always show something instantly</em>, even while other content is loading.</p>
+				</section>
+				<section>
+					<p>Now compare that to native:</p>
+					<div class="fragment">
+						<blockquote><p>...the first load of a native app sucks. It’s gated by an app store and a huge download, but once you get to a point where the app is installed, that up-front cost is amortized across all app starts and none of those starts have a variable delay...</p></blockquote>
+						<cite><a href="https://infrequently.org/2016/05/service-workers-and-pwas-its-about-reliable-performance-not-offline/">Alex Russel</a>, Google Chrome</cite>
+					</div>
+				</section>
+				<section>
+					<p>People tolerate the app installation because afterwards, they can rely on native apps to <strong>load instantly</strong>.</p>
+					<p class="fragment">Today, they cannot expect that for web apps. <span class="fragment">😦</span></p>
+				</section>
+				<section>
+					<p class="fragment grow"><em><strong>Service Workers provide <u>reliable performance</u></strong></em>.</p>
+					<p class="fragment main-point-of-talk">important takeaway ☝</p>
+				</section>
+				<section>
+					<p>Reliable performance is gold.</p>
+					<p class="fragment">All performance work boils down to perception.</p>
+					<p class="fragment">When we meet expectations, we make people happy.</p>
+					<p class="fragment"><small style="transform: translateY(-20px); opacity: .666; ">(or at least not annoyed with our site)</small></p>
+				</section>
+				<section>
+					<p>Assuming your initial page load is decent, adding a<br> Service Worker puts you <em>ahead of native apps</em>.</p>
+					<p class="fragment">You have a painless install and an instant boot on revisits.</p>
+				</section>
+				<section>
+					<h3>Video research</h3>
+					<p>Watch Jake Archibald, a real web developer, explain the process of booting an app using the Service Worker.</p>
+					<p class="fragment"><a href="https://www.youtube.com/watch?v=d5_6yHixpsQ#t=420">View on YouTube</a></p>
+				</section>
+				<section data-background="#0678be">
+					[TODO: Mention BigPipe and show how streaming is coming to both the web and Drupal.]
+				</section>
+				<section>
+					<section>
+						<h2>Back to the original problem.</h2>
+					</section>
+					<section data-background="img/indonesia-ijen.jpg"></section>
+					<section data-background="img/indonesia-borobudur.jpg"></section>
+					<section data-background="img/indonesia-bali.jpg"></section>
+					<section data-background="img/malaysia-langkawi.jpg"></section>
+					<section data-background="img/thailand-kohyanoi.jpg"></section>
+					<section>
+						<h2>Bad Connectivity</h2>
+						<p class="fragment">Travelers often need info fast. Waiting for wi-fi is not an option when the bus is leaving.</p>
+						<br>
+						<p class="fragment">Would have been great to save pages offline...</p>
+						<p class="fragment">...which we could have pulled up instantly later on.</p>
+					</section>
+				</section>
+				<section>
+					[TODO: Talk about caching content.]
+				</section>
+				<section>
+					[TODO: Various use-cases for caching with SW.]
+					https://jakearchibald.com/2014/offline-cookbook/
+				</section>
+				<section>
+					[TODO: relate to marketing and branding opportunities]
+				</section>
+				<section>
+					<h1>Thank you!</h1>
+				</section>
+				<section>
+					<h1>Questions?</h1>
+					<br><br>
+					<ul>
+						<li><a href="https://twitter.com/rupl">@rupl</a></li>
+						<li><a href="https://chrisruppel.com">chrisruppel.com</a></li>
+					</ul>
+					<br><br><br>
+					<p><small>All photos were taken by me. <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">CC BY-SA-NC 3.0</a></small></p>
+				</section>
 			</div>
 		</div>
 

@@ -1,0 +1,52 @@
+/*
+ * emoji have different line-height. fix it.
+ */
+.emoji {
+  position: relative;
+  top: .1em;
+}
+
+/*
+ *
+ */
+.reveal .slides section .fragment.italics {
+	opacity: 1!important;
+	visibility: visible!important;
+}
+.reveal .slides section .fragment.italics.visible {
+	font-style: italic;
+}
+
+/*
+ *
+ */
+.reveal .slides section .fragment.only-visible-active {
+  opacity: 0!important;
+  visibility: hidden!important;
+}
+.reveal .slides section .fragment.only-visible-active.current-fragment {
+  opacity: 1!important;
+  visibility: visible!important;
+}
+
+/*
+ *
+ */
+.reveal .slides section .fragment.main-point-of-talk {
+  color: #c55;
+  font-size: .9em;
+  opacity: .75;
+
+  transform-origin: 50% 50%;
+  transform: translateY(40px) rotate(0deg);
+}
+.reveal .slides section .fragment.main-point-of-talk.visible {
+  transform: translateY(0px) rotate(4deg);
+  animation: point 4s alternate infinite;
+}
+
+@keyframes point {
+  50% {
+    transform: translateY(0px) rotate(-9deg);
+  }
+}
