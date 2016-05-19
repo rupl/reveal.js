@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Something Something Service Worker</title>
+		<title>Service Worker and Frontend Performance</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -26,10 +26,11 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h1>Something<br> Something<br> Service<br> Worker</h1>
+					<h1>Service<br> Worker<br> &<br> Frontend<br> Performance</h1>
 				</section>
 				<section>
-					<h2>AKA: Give me a break, Morten reminded me about this on Monday</h2>
+					<h2>Warning: Morten reminded me about this on Monday</h2>
+					<p class="fragment"><small>(the slides might be a bit rough on the edges)</small></p>
 				</section>
 				<section>
 					<h2>And I've been busy not<br> working since October</h2>
@@ -52,7 +53,20 @@
 					</section>
 				</section>
 				<section>
-					<h2>The internet <em>sucks</em> in all of these places.</h2>
+					<h2>The internet is super flaky in all of these places.</h2>
+				</section>
+				<section>
+					<h3>Worse than conference wi-fi</h3>
+					<p class="fragment"><small>(I'm sure the wifi at this event is superb!)</small></p>
+				</section>
+				<section>
+					<section>
+						<h3>Traveler's Dilemma</h3>
+						<p>Constantly looking up information,<br> can't pull it up in the right moment.</p>
+					</section>
+					<section>
+						<p>If only those fonts weren't blocking render...</p>
+					</section>
 				</section>
 				<section>
 					<h2>How can we make the internet tolerable in places with shoddy network access?</h2>
@@ -63,6 +77,7 @@
 						<li class="fragment">Provide critical CSS so the browser paints <abbr title="as soon as possible">ASAP</abbr></li>
 						<li class="fragment">Set and stick to a performance budget</li>
 						<li class="fragment">Test your work using robots</li>
+						<li class="fragment">Use HTTP/2 to push/stream assets.</li>
 					</ul>
 				</section>
 				<section>
@@ -74,7 +89,7 @@
 					<p class="fragment">Isn't all of that stuff focusing on <strong>first page load</strong>,<br> potentially to the detriment of the subsequent loads?</p>
 				</section>
 				<section>
-					<p>Yes. But that can be fixed with</p>
+					<p>Yes. But it can all be fixed with</p>
 					<h1 class="fragment">Service Worker</h1>
 				</section>
 				<section>
@@ -82,15 +97,18 @@
 						<p>Service Worker is a <a href="http://www.html5rocks.com/en/tutorials/workers/basics/">Web Worker</a> which can intercept and allow you to handle network requests for your website.</p>
 					</section>
 					<section>
-						<p>Web workers are plain JavaScript, but they have special powers because it's not part of the main thread that powers normal page interactivity.</p>
+						<p>Web Workers are plain JavaScript, but they're not part of the main thread that powers normal browser interactivity.</p>
+					</section>
+					<section>
+						<p>That means no access to the DOM, but other stuff that we normally avoid in JS is ok (e.g. long-running computations).</p>
 					</section>
 					<section>
 						<p class="fragment shrink">Service Worker has additional super powers:</p>
 						<ul>
-							<li class="fragment">Enable custom handling of HTTP requests.</li>
+							<li class="fragment">Enable custom handling of HTTP requests</li>
 							<li class="fragment">Enable you to send push notifications</li>
 							<li class="fragment">Enable background updates</li>
-							<li class="fragment">Qualify your site for "save to homescreen"</li>
+							<li class="fragment">Qualify your site for other web platform features</li>
 						</ul>
 					</section>
 					<section>
@@ -99,8 +117,14 @@
 					</section>
 				</section>
 				<section>
-					<p>Service Worker forms the shell of your progressive web app.</p>
-					<p class="fragment">After the initial visit <em>you can always show something instantly</em>, even while other content is loading.</p>
+					<section>
+						<p>Service Worker forms the shell of your progressive web app.</p>
+						<p class="fragment">After successful install <em>you can always show something instantly</em>, even while other content is loading.</p>
+					</section>
+					<section>
+						<p>Service Worker installation only takes a few seconds.</p>
+						<p class="fragment">It starts working on the second page load.</p>
+					</section>
 				</section>
 				<section>
 					<p>Now compare that to native:</p>
@@ -110,7 +134,8 @@
 					</div>
 				</section>
 				<section>
-					<p>People tolerate the app installation because afterwards, they can rely on native apps to <strong>load instantly</strong>.</p>
+					<p>People tolerate app installations because afterwards,<br> they can rely on native apps to <strong>load instantly</strong>.</p>
+					<br>
 					<p class="fragment">Today, they cannot expect that for web apps. <span class="fragment">😦</span></p>
 				</section>
 				<section>
@@ -119,21 +144,86 @@
 				</section>
 				<section>
 					<p>Reliable performance is gold.</p>
-					<p class="fragment">All performance work boils down to perception.</p>
+					<p class="fragment">Performance boils down to perception.</p>
 					<p class="fragment">When we meet expectations, we make people happy.</p>
-					<p class="fragment"><small style="transform: translateY(-20px); opacity: .666; ">(or at least not annoyed with our site)</small></p>
+					<p class="fragment"><small style="transform: translateY(-20px); opacity: .666; ">(or at least not annoyed)</small></p>
 				</section>
 				<section>
 					<p>Assuming your initial page load is decent, adding a<br> Service Worker puts you <em>ahead of native apps</em>.</p>
-					<p class="fragment">You have a painless install and an instant boot on revisits.</p>
+					<p class="fragment">Seamless install + instant boot on revisits.</p>
 				</section>
 				<section>
-					<h3>Video research</h3>
-					<p>Watch Jake Archibald, a real web developer, explain the process of booting an app using the Service Worker.</p>
+					<h2>Demo time</h2>
+					<p class="fragment"><a href="https://chrisruppel.com">Service Worker on chrisruppel.com</a></p>
+				</section>
+				<section>
+					<section>
+						<h2>Getting started</h2>
+						<br>
+						<ol>
+							<li class="fragment highlight">Enable SSL on your website</li>
+							<li class="fragment highlight">Decide what parts of your site are <abbr title="minimum viable product">MVP</abbr></li>
+							<li class="fragment highlight">Decide on a caching strategy</li>
+						</ol>
+					</section>
+					<section>
+						<h3>1. Enable SSL</h3>
+						<p>Service Worker exposes new, powerful ablities,<br> particularly in regards to network activity.</p>
+						<br>
+						<p class="fragment">It can be easily abused via <abbr title="man in the middle">MITM</abbr> attacks.</p>
+						<br>
+						<p class="fragment">The spec requires the origin to be HTTPS.<br> It does nothing on unencrypted sites.</p>
+						<p class="fragment"><small><span class="emoji">⚡</span> <code>localhost</code> is exempt to allow for development <span class="emoji">⚡</span></small></p>
+					</section>
+					<section>
+						<h3>2. What to cache?</h3>
+						<p>You can't cache your whole site.<br> Pick the most important static pages.</p>
+						<br>
+						<p class="fragment">Caching too much will mean <em>your</em> cache is axed<br> when the browser needs to free up memory.</p>
+						<br>
+						<p class="fragment">It's easy to display an "offline" message<br> which directs users to your cached pages.</p>
+					</section>
+					<section>
+						<h3>3. How to cache?</h3>
+						<br>
+						<p>Need some help? Jake Archibald, co-author of<br> the Service Worker spec, has you covered:</p>
+						<br>
+						<p class="fragment"><a href="https://jakearchibald.com/2014/offline-cookbook/">Offline Cookbook</a>, a reference of caching use-cases<br> along with code snippets for your Service Worker.</p>
+					</section>
+					<section>
+						<h3>Common strategy</h3>
+						<br>
+						<p>Start by implementing <em>Stale While Revalidate:</em></p>
+						<br>
+						<ol>
+							<li class="fragment highlight">Cached assets are used immediately.</li>
+							<li class="fragment highlight">Cache entry is updated in the background.</li>
+							<li class="fragment highlight">Next page load uses new asset.</li>
+						</ol>
+						<br><br>
+						<p class="fragment">Result: fast requests while maintaining a warm cache.</p>
+					</section>
+				</section>
+				<section>
+					<h3>Advanced Strategies</h3>
+					<br>
+					<p>Watch Jake explain the process of booting an app using the Service Worker and streaming content to the page.</p>
 					<p class="fragment"><a href="https://www.youtube.com/watch?v=d5_6yHixpsQ#t=420">View on YouTube</a></p>
 				</section>
-				<section data-background="#0678be">
-					[TODO: Mention BigPipe and show how streaming is coming to both the web and Drupal.]
+				<section data-background="#0678be" data-state="drupal">
+					<section>
+						<h3>Streaming, you say?</h3>
+						<h3 class="fragment">Drupal 8.1 has you covered</h3>
+						<br>
+						<p class="fragment"><a href="https://drupal.org/project/big_pipe">BigPipe module</a>, now in Drupal 8.1 core!</p>
+					</section>
+					<section>
+						<p>BigPipe sends the cached parts of the page when ready,<br> then fills in the slower pieces as they are built on the server.</p>
+					</section>
+					<section>
+						<h3>Demo video of BigPipe</h3>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/JwzX0Qv6u3A" frameborder="0" allowfullscreen=""></iframe>
+					</section>
 				</section>
 				<section>
 					<section>
@@ -146,7 +236,7 @@
 					<section data-background="img/thailand-kohyanoi.jpg"></section>
 					<section>
 						<h2>Bad Connectivity</h2>
-						<p class="fragment">Travelers often need info fast. Waiting for wi-fi is not an option when the bus is leaving.</p>
+						<p class="fragment">Travelers often need info fast. Waiting for wi-fi<br> is not an option when the bus is leaving.</p>
 						<br>
 						<p class="fragment">Would have been great to save pages offline...</p>
 						<p class="fragment">...which we could have pulled up instantly later on.</p>
@@ -156,23 +246,16 @@
 					[TODO: Talk about caching content.]
 				</section>
 				<section>
-					[TODO: Various use-cases for caching with SW.]
-					https://jakearchibald.com/2014/offline-cookbook/
-				</section>
-				<section>
-					[TODO: relate to marketing and branding opportunities]
-				</section>
-				<section>
 					<h1>Thank you!</h1>
 				</section>
 				<section>
+					<br><br>
 					<h1>Questions?</h1>
 					<br><br>
-					<ul>
-						<li><a href="https://twitter.com/rupl">@rupl</a></li>
-						<li><a href="https://chrisruppel.com">chrisruppel.com</a></li>
-					</ul>
-					<br><br><br>
+					<p>
+						<a href="https://twitter.com/rupl">@rupl</a> —
+						<a href="https://chrisruppel.com">chrisruppel.com</a>
+					</p>
 					<p><small>All photos were taken by me. <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">CC BY-SA-NC 3.0</a></small></p>
 				</section>
 			</div>

@@ -7,14 +7,27 @@
 }
 
 /*
+ * abbreviations
+ */
+abbr {
+  cursor: help;
+}
+
+/*
+ * Drupal slides
+ */
+.reveal .slides section[data-state="drupal"] a {
+  color: white;
+  text-decoration: underline;
+}
+/*
  *
  */
-.reveal .slides section .fragment.italics {
-	opacity: 1!important;
-	visibility: visible!important;
+.reveal .slides section .fragment.highlight {
+  opacity: .5;
 }
-.reveal .slides section .fragment.italics.visible {
-	font-style: italic;
+.reveal .slides section .fragment.highlight.current-fragment {
+  opacity: 1;
 }
 
 /*
